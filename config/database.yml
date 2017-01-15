@@ -49,10 +49,7 @@ test:
   template: template0
 
 production:
-  adapter:  postgresql
+  adapter: postgresql
   encoding: unicode
-  database: karmamix_production
-  pool:     5
-  username: postgres
-  password:
-  template: template0
+  pool: 5
+  url: <%= ENV['DATABASE_URL'] %>
