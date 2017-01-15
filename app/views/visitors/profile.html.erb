@@ -40,7 +40,7 @@
 
             <tr>
               <td>
-                <img src="<%= current_user.image_url ? current_user.image_url : '' %>" alt="Avatar" class="img-square" width="40">
+
                 <button type="button" class="btn btn-default" data-toggle="popover" data-html=true trigger="focus" title="ChainPoint <a href='https://tierion.com/chainpoint'>What's This?</a>" data-content="<%= text rescue '' -%>">
                   "<%= event.body rescue '' %>" <%= event.created_at.utc rescue '' %>
                 </button>
