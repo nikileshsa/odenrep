@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   has_many :identities
+  has_many :events
 
   def set_default_role
     self.role ||= :user
