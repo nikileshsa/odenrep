@@ -35,8 +35,8 @@ class VisitorsController < ApplicationController
 
   def profile
 
-    p_user = User.where(:profile_url => params[:profile]).first
-    unless p_user && p_user.profile_active?
+    @p_user = User.where(:profile_url => params[:profile]).first
+    unless @p_user && @p_user.profile_active?
       render :text => 'error'
       return false
     end

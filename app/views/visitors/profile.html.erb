@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-md-11">
         <table class="table table-striped">
-          <% current_user.events.order('created_at DESC').each do |event| %>
+          <% @p_user.events.order('created_at DESC').each do |event| %>
             <% chainpoint = event.chainpoint
               text = "<b>targetHash:</b> " + chainpoint.target_hash + '<br>' rescue ''
               if chainpoint.merkle_root
@@ -37,14 +37,15 @@
               end
              %>
 
+
             <tr>
               <td>
                 <img src="<%= current_user.image_url ? current_user.image_url : '' %>" alt="Avatar" class="img-square" width="40">
-                <button type="button" class="btn btn-default" data-toggle="popover" data-html=true trigger="focus" title="ChainPoint <a href='https://tierion.com/chainpoint'>What's This?</a>" data-content="<%= text -%>">
-                  "<%= event.body %>" <%= event.created_at.utc %>
+                <button type="button" class="btn btn-default" data-toggle="popover" data-html=true trigger="focus" title="ChainPoint <a href='https://tierion.com/chainpoint'>What's This?</a>" data-content="<%= text rescue '' -%>">
+                  "<%= event.body rescue '' %>" <%= event.created_at.utc rescue '' %>
                 </button>
 
-                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myEndorseModal<%= event.id.to_s -%>" >
+                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myEndorseModal<%= event.id.to_s rescue '' -%>" >
                   Endorse This
                 </button>
 
