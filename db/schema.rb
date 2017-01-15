@@ -19,8 +19,11 @@ ActiveRecord::Schema.define(version: 20170115015830) do
     t.integer  "endorsee_id"
     t.integer  "endorser_id"
     t.integer  "event_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "code"
+    t.string   "email"
+    t.boolean  "confirmed",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "events", force: :cascade do |t|

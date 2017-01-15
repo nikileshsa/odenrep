@@ -14,6 +14,8 @@ gem "bootstrap_form"
 gem 'font-awesome-sass', '~> 4.6.2'
 gem 'twitter'
 gem 'rails_12factor', group: :production
+gem 'sendgrid-ruby'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end

@@ -5,6 +5,8 @@ class CreateEndorsements < ActiveRecord::Migration[5.0]
       t.integer :endorser_id
       t.integer :event_id
       t.string :code
+      t.string :email
+      t.boolean :confirmed, :default => false
       t.timestamps
     end
   end
