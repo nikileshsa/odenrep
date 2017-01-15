@@ -6,6 +6,7 @@ class CreateChainpoints < ActiveRecord::Migration[5.0]
       t.string :merkle_root
       t.string :proof
       t.string :anchors
+      t.integer :event_id
       t.timestamps
     end
   end

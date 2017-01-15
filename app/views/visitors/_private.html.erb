@@ -23,23 +23,28 @@
         <hr>
       </div>
     </div>
-
-    <% chainpoint = {"@context"=>"https://w3id.org/chainpoint/v2", "type"=>"ChainpointSHA256v2", "targetHash"=>"2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae", "merkleRoot"=>"6a7aed0ee0ab2707b25530e5860d1937d2403e83f4d71813b01f49034ad310b3", "proof"=>[{"right"=>"4dffa51785c9e1982d09d4f27d22c1fa4a47abef5649dc7e2fe629804e12d7bd"}], "anchors"=>[{"type"=>"BTCOpReturn", "sourceId"=>"037ac0e43f8a06cdab6bc8ab831a8b90a90f4251c1fba0d653fd5546e693830f"}]}
-      require 'json/ext'
-      chainpoint_json = chainpoint.to_json.gsub(/\"/, '\"')
-      text = "<b>targetHash:</b> " + chainpoint["targetHash"] + '<br>'
-      text = text + "<b>merkleRoot:</b> " + chainpoint["merkleRoot"] + '<br>'
-      text = text + "<b>proof:</b> " + chainpoint["proof"].to_s + '<br>'
-      text = text + "<b>anchors:</b> " + chainpoint["anchors"].to_s
-     %>
+<style type="text/css">
+    .popover{
+        max-width:600px;
+    }
+</style>
     <div class="row">
       <div class="col-md-11">
         <table class="table table-striped">
           <% current_user.events.order('created_at DESC').each do |event| %>
+            <% chainpoint = event.chainpoint
+              text = "<b>targetHash:</b> " + chainpoint.target_hash + '<br>' rescue ''
+              if chainpoint.merkle_root
+                text = text + "<b>merkleRoot:</b> " + chainpoint.merkle_root + '<br>'
+                text = text + "<b>proof:</b> " + chainpoint.proof + '<br>'
+                text = text + "<b>anchors:</b> " + chainpoint.anchors
+              end
+             %>
+
             <tr>
               <td>
                 <img src="<%= current_user.image_url ? current_user.image_url : '' %>" alt="Avatar" class="img-square" width="40">
-                <button type="button" class="btn btn-default" data-toggle="popover" data-html=true trigger="focus" title="ChainPoint" data-content="<%= text -%>">
+                <button type="button" class="btn btn-default" data-toggle="popover" data-html=true trigger="focus" title="ChainPoint <a href='https://tierion.com/chainpoint'>What's This?</a>" data-content="<%= text -%>">
                   "<%= event.body %>" <%= event.created_at.utc %>
                 </button>
 
@@ -62,14 +67,14 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Endorse: "<%= event.body %>"</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Ask Someone to Endorse: "<%= event.body %>"</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                         <%= bootstrap_form_for Endorsement.new do |f| %>
                           <div class="modal-body">
-                          <%= f.text_area :email, value: '', :placeholder => 'friend' %>
+                          <%= f.text_area :email, value: '', :placeholder => 'user@email.com' %>
                           <%= f.hidden_field :event_id, value: event.id %>
                           </div>
                           <div class="modal-footer">

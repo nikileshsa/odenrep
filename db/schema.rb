@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170115093145) do
     t.string   "merkle_root"
     t.string   "proof"
     t.string   "anchors"
+    t.integer  "event_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

@@ -39,7 +39,7 @@ class EndorsementsController < ApplicationController
       e.confirmed = true
       e.save
     end
-    render :text => 'Thank you for confirming the endorsement!'
+    render :text => 'Thank you for confirming the endorsement! --ODEN Rep'
   end
 
   private
