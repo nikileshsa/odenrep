@@ -8,7 +8,7 @@
       <div class="col-md-6">
         <h3>
           <%= current_user.name.split(' ').first %>'s Timeline
-          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">
+          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myEventModal">
             Add Event
           </button>
 
@@ -19,6 +19,15 @@
         <hr>
       </div>
     </div>
+
+    <% chainpoint = {"@context"=>"https://w3id.org/chainpoint/v2", "type"=>"ChainpointSHA256v2", "targetHash"=>"2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae", "merkleRoot"=>"6a7aed0ee0ab2707b25530e5860d1937d2403e83f4d71813b01f49034ad310b3", "proof"=>[{"right"=>"4dffa51785c9e1982d09d4f27d22c1fa4a47abef5649dc7e2fe629804e12d7bd"}], "anchors"=>[{"type"=>"BTCOpReturn", "sourceId"=>"037ac0e43f8a06cdab6bc8ab831a8b90a90f4251c1fba0d653fd5546e693830f"}]}
+      require 'json/ext'
+      chainpoint_json = chainpoint.to_json.gsub(/\"/, '\"')
+      text = "<b>targetHash:</b> " + chainpoint["targetHash"] + '<br>'
+      text = text + "<b>merkleRoot:</b> " + chainpoint["merkleRoot"] + '<br>'
+      text = text + "<b>proof:</b> " + chainpoint["proof"].to_s + '<br>'
+      text = text + "<b>anchors:</b> " + chainpoint["anchors"].to_s
+     %>
     <div class="row">
       <div class="col-md-11">
         <table class="table table-striped">
@@ -26,16 +35,26 @@
             <tr>
               <td>
                 <img src="<%= current_user.image_url ? current_user.image_url : '' %>" alt="Avatar" class="img-square" width="40">
+                <button type="button" class="btn btn-default" data-toggle="popover" data-html=true trigger="focus" title="ChainPoint" data-content="<%= text -%>">
+                  "<%= event.body %>" <%= event.created_at.utc %>
+                </button>
 
-                "<%= event.body %>" <%= event.created_at.utc %>
-
-                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">
-                  Endorse Event
+                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myEndorseModal<%= event.id.to_s -%>" >
+                  Get Endorsement
                 </button>
 
 
+                <% if event.endorsements.where(:confirmed => true).size > 0 %>
+                  Endorsed by:
+                <% end %>
+                <% event.endorsements.where(:confirmed => true).each do |endorsement| %>
+                  <%= endorsement.email %> <i class="fa fa-check" aria-hidden="true"></i>
+                <% end %>
+
+
+
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="myEndorseModal<%= event.id.to_s -%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -76,7 +95,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="myEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -97,3 +116,37 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(function () {
+    $('[data-toggle="popover"]').popover();
+
+  })
+
+$(document).on('focus', ':not(.popover)', function(){
+    $('.popover').popover('hide');
+});
+$(document).on('click', function (e) {
+    var
+        $popover,
+        $target = $(e.target);
+
+    //do nothing if there was a click on popover content
+    if ($target.hasClass('popover') || $target.closest('.popover').length) {
+        return;
+    }
+
+    $('[data-toggle="popover"]').each(function () {
+        $popover = $(this);
+
+        if (!$popover.is(e.target) &&
+            $popover.has(e.target).length === 0 &&
+            $('.popover').has(e.target).length === 0)
+        {
+            $popover.popover('hide');
+        } else {
+            //fixes issue described above
+            $popover.popover('toggle');
+        }
+    });
+})
+</script>

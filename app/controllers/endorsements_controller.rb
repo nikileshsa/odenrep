@@ -9,15 +9,20 @@ class EndorsementsController < ApplicationController
     code = SecureRandom.hex + SecureRandom.hex
     e.code = code
     e.email = params[:endorsement][:email]
-    e.save!
     event = Event.find(params[:endorsement][:event_id])
+    e.event = event
+    e.save!
 
     from = Email.new(email: 'rhett@odenrep.com')
     subject = current_user.name + ' would like an endorsement'
     to = Email.new(email: e.email)
+    domain = 'odenrep.com'
+    if Rails.env.development?
+      domain = 'localhost:3000'
+    end
     content = Content.new(type: 'text/plain', value: "Hello,\n" + current_user.name + ' is asking for an endorsement of '+
       event.body + "\n\n" + ' Please click here to confirm: '+
-      'http://odenrep.com/confirm/' + e.code)
+      'http://' + domain + '/confirm/' + e.code)
     mail = Mail.new(from, subject, to, content)
     sg = SendGrid::API.new(api_key: Rails.application.secrets.sendgrid_key)
     response = sg.client.mail._('send').post(request_body: mail.to_json)

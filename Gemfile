@@ -19,6 +19,7 @@ gem 'sendgrid-ruby'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'binding_of_caller'
