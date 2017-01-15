@@ -6,7 +6,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -15,7 +14,9 @@ gem "bootstrap_form"
 gem 'font-awesome-sass', '~> 4.6.2'
 gem 'twitter'
 gem 'rails_12factor', group: :production
-
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'binding_of_caller'
