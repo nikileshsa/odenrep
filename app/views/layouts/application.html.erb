@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Karma Mix" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Karma Mix" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+    <%= csrf_meta_tags %>
+  </head>
+
+
+<% if current_user %>
+  <body class="<%= 'layout-container ls-top-navbar si-l3-md-up' -%>">
+    <%= render 'layouts/nav' %>
+    <%= render 'layouts/sidebar' %>
+    <%= yield %>
+  </body>
+<% else %>
+  <body>
+    <%= yield %>
+  </body>
+<% end %>
+
+
+</html>
