@@ -50,13 +50,12 @@
                 </button>
 
 
-                <% if event.endorsements.where(:confirmed => true).size > 0 %>
-                  Endorsed by:
+                <% if event.endorsements.where(:confirmed => true).size > 1 %>
+                  <%= event.endorsements.where(:confirmed => true).size -%> Endorsements <i class="fa fa-check" aria-hidden="true"></i>
                 <% end %>
-                <% event.endorsements.where(:confirmed => true).each do |endorsement| %>
-                  <%= endorsement.email %> <i class="fa fa-check" aria-hidden="true"></i>
+                <% if event.endorsements.where(:confirmed => true).size == 1 %>
+                  <%= event.endorsements.where(:confirmed => true).size -%> Endorsement <i class="fa fa-check" aria-hidden="true"></i>
                 <% end %>
-
 
 
                 <!-- Modal -->
