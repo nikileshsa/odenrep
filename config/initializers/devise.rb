@@ -251,6 +251,8 @@ Devise.setup do |config|
     Rails.application.secrets.twitter_app_secret, :scope => 'email'
   config.omniauth :facebook, Rails.application.secrets.fb_app_id,
     Rails.application.secrets.fb_app_secret
+  config.omniauth :linkedin, Rails.application.secrets.linked_app_id,
+    Rails.application.secrets.linked_app_secret
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

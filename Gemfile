@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-linkedin'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem "bootstrap_form"
 gem 'font-awesome-sass', '~> 4.6.2'

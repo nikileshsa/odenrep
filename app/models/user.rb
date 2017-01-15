@@ -41,9 +41,14 @@ class User < ApplicationRecord
       user = User.where(:email => email).first if email
       image_url = auth.info.image
       # Create the user if it's a new registration
+      if auth.extra.raw_info.name
+        user_name = auth.extra.raw_info.name
+      else
+        user_name = auth.extra.raw_info.firstName + ' ' + auth.extra.raw_info.lastName rescue nil
+      end
       if user.nil?
         user = User.new(
-          name: auth.extra.raw_info.name,
+          name: user_name,
           #username: auth.info.nickname || auth.uid,
           image_url: image_url,
           oauth_token: auth.credentials.token,

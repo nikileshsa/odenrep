@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115015830) do
+ActiveRecord::Schema.define(version: 20170115093145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chainpoints", force: :cascade do |t|
+    t.string   "target_hash"
+    t.string   "chainpoint_id"
+    t.string   "merkle_root"
+    t.string   "proof"
+    t.string   "anchors"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "endorsements", force: :cascade do |t|
     t.integer  "endorsee_id"
