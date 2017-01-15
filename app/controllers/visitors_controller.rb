@@ -5,7 +5,7 @@ class VisitorsController < ApplicationController
       unless current_user.profile_url
         require 'securerandom'
         current_user.profile_url = SecureRandom.hex
-        current_user.save
+        current_user.save!
       end
 
       if events
@@ -29,7 +29,7 @@ class VisitorsController < ApplicationController
     unless current_user.profile_url
       require 'securerandom'
       current_user.profile_url = SecureRandom.hex
-      current_user.save
+      current_user.save!
     end
   end
 
