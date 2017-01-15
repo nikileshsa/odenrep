@@ -8,6 +8,236 @@
     <%= javascript_include_tag 'application'%>
     <%= csrf_meta_tags %>
     <meta name="google-site-verification" content="TIEZrHfOKxEYbHyh_6b6MVpnVmFs3XiZo0ZR_0luMO8" />
+
+
+<% if controller_name == 'visitors' && !current_user && action_name == 'index' %>
+
+
+<style type="text/css">
+
+/*===============================
+
+Template Name:
+Author:
+Author URI:
+Version: 1.0
+
+--------------------------------
+
+CSS INDEX
+=========
+
+1. Base CSS
+
+================================*/
+
+
+/* =============================
+1. Base CSS
+================================*/
+
+.floatleft { float: left }
+.floatright { float: right }
+.alignleft {
+    float: left;
+    margin-right: 15px;
+}
+.alignright {
+    float: right;
+    margin-left: 15px;
+}
+.aligncenter {
+    display: block;
+    margin: 0 auto 15px;
+}
+a:focus { outline: 0px solid }
+img {
+    max-width: 100%;
+    height: auto;
+}
+.fix { overflow: hidden }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 15px;
+    font-weight: 700;
+}
+html,
+body { height: 100% }
+body { font-family: 'Open Sans', sans-serif; }
+.section-padding { padding: 60px 0 }
+.section-gray { background-color: #F7F7F7 }
+.section-dark {
+    background-color: #110C09;
+    color: #fff;
+}
+a:hover { color: #000 }
+
+
+/* =========================
+2. Home CSS
+============================*/
+header.header-area {
+  background-color: #ddd;
+  background-image: url("/images/homepage_bg.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 660px;
+  position: relative;
+}
+header.header-area::after {
+  background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+.welcome_inner h2 {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+.welcome_inner p {
+  color: #000000;
+  margin: 0 auto;
+  text-align: center;
+  width: 50%;
+}
+.welcome_area {
+  padding: 70px 0 71px;
+}
+.promo_area {
+  padding-bottom: 70px;
+  text-align: center;
+}
+.single_promo h3 {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+.single_promo p {
+  color: #000000;
+  margin: 0 auto;
+  width: 83%;
+}
+.footer_area {
+  background: #595959 none repeat scroll 0 0;
+  color: #ffffff;
+  padding: 22px 0;
+  text-align: center;
+}
+.footer_inner ul {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+}
+.footer_inner ul li{
+  display: inline-block;
+}
+.footer_inner ul li a {
+  color: #ffffff;
+  display: inline-block;
+  font-size: 22px;
+  padding: 0 10px;
+  text-shadow: 1px 1px 1px #000000;
+}
+.footer_inner ul li a:hover {
+  color: #e10561;
+  text-decoration: none;
+}
+.site-logo a {
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.site-logo a:hover {
+  text-decoration: none;
+}
+.site-logo {
+  margin-top: 3px;
+}
+.header_top {
+  padding: 19px 0;
+  position: relative;
+  z-index: 2;
+}
+.main-menu ul {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+.main-menu ul li {
+  display: inline-block;
+}
+.main-menu ul li a {
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 10px 22px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.main-menu ul li.take-action a {
+  border-color: #fff;
+  border-radius: 22px;
+  border-style: solid;
+  border-width: 2px 1px;
+}
+.main-menu ul li.take-action a:hover {
+  background: #fff;
+  color: #000;
+}
+.banner_inner {
+  text-align: center;
+}
+.banner_inner h1 {
+  color: #fff;
+  font-size: 68px;
+  font-weight: 700;
+}
+.social_login ul {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+}
+.social_login ul li {
+  display: block;
+  margin-bottom: 5px;
+}
+.banner {
+  left: 0;
+  margin-top: -110px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  z-index: 2;
+}
+#mobile-header {
+    display: none;
+}
+
+
+</style>
+
+<% end %>
+
   </head>
 
 

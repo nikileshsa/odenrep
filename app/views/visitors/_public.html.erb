@@ -1,17 +1,53 @@
-<h3>Welcome</h3>
-<div style="margin-left: 200px;">
-<div class="btn-group" style="width: 300px;" >
-  <a class='btn btn-primary disabled btn-lg' ><i class="fa fa-twitter" style="width:16px;"></i></a>
-  <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path,
-      :class => 'btn btn-primary btn-lg', :style => "width:12em;" %>
-</div>
 
+    <!-- Header START-->
+  <header class="header-area">
+    <div class="header_top">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="ht_inner">
+              <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-8">
+                    <!-- Site logo -->
+                  <div class="site-logo">
+                    <a href="index.html">ODEN</a>
+                  </div>
+                </div>
 
-<div class="btn-group" style="width: 300px;" >
-  <a class='btn btn-primary disabled btn-lg' ><i class="fa fa-facebook" style="width:16px;"></i></a>
-  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path,
-      :class => 'btn btn-primary btn-lg', :style => "width:12em;" %>
-</div>
+                <div class="col-md-8 col-sm-8 col-xs-4">
+                  <nav class="main-nav">
+                      <!-- Mobile menu -->
+                      <div id="mobile-header">
+                                            <a id="responsive-menu-button" href="#sidr-main"><i class="fa fa-bars"></i></a>
+                                        </div>
+
+                    <div class="main-menu">
+                      <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">About</a></li>
+                        <li class="take-action"><a href="">Take action</a></li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="banner_inner">
+              <h1>REPUTATION. IS. EVERYTHING.</h1>
+              <div class="social_login">
+                <ul>
+                  <li><a href="<%= user_facebook_omniauth_authorize_path -%>"><img src="/images/login-with-tw.png" alt="Login with facebook"></a></li>
+                  <li><a href="<%= user_twitter_omniauth_authorize_path -%>"><img src="/images/login-with-fb.png" alt="Login with twitter"></a></li>
+
 
 <div class="btn-group" style="width: 300px;" >
   <a class='btn btn-primary disabled btn-lg' ><i class="fa fa-linkedin" style="width:16px;"></i></a>
@@ -19,4 +55,99 @@
       :class => 'btn btn-primary btn-lg', :style => "width:12em;" %>
 </div>
 
-</div>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Header END-->
+
+  <!-- Welcome area START-->
+  <section class="welcome_area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="welcome_inner">
+            <h2>Build, control, and carry your reputation.
+</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, in, quae. Voluptatibus expedita blanditiis harum nam, fuga eligendi! Magnam enim, ipsa. Laudantium, harum non vitae repudiandae et dolorum accusantium praesentium.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Welcome area END -->
+
+  <!-- Promo area START-->
+  <section class="promo_area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="promo_inner">
+            <div class="row">
+
+              <!-- single promo -->
+              <div class="col-md-3 col-sm-3">
+                <div class="single_promo">
+                  <img src="/images/unified.png" alt="Unified">
+                  <h3>UNIFIED</h3>
+                  <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                </div>
+              </div>
+
+              <!-- single promo -->
+              <div class="col-md-3 col-sm-3">
+                <div class="single_promo">
+                  <img src="/images/verified.png" alt="Verified">
+                  <h3>VERIFIED</h3>
+                  <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                </div>
+              </div>
+
+              <!-- single promo -->
+              <div class="col-md-3 col-sm-3">
+                <div class="single_promo">
+                  <img src="/images/owned.png" alt="Owned">
+                  <h3>OWNED</h3>
+                  <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                </div>
+              </div>
+
+              <!-- single promo -->
+              <div class="col-md-3 col-sm-3">
+                <div class="single_promo">
+                  <img src="/images/portable.png" alt="Portable">
+                  <h3>PORTABLE</h3>
+                  <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Promo area END -->
+
+  <!-- Footer area START-->
+  <footer class="footer_area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="footer_inner">
+            <ul>
+              <li><a class="fa fa-facebook" href="#" target="_blank"></a></li>
+              <li><a class="fa fa-twitter" href="#" target="_blank"></a></li>
+              <li><a class="fa fa-instagram" href="#" target="_blank"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
