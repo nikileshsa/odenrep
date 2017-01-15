@@ -13,7 +13,7 @@ class EndorsementsController < ApplicationController
     e.event = event
     e.save!
 
-    from = Email.new(email: 'rhett@odenrep.com')
+    from = Email.new(email: 'rhett@heyrhett.com')
     subject = current_user.name + ' would like an endorsement'
     to = Email.new(email: e.email)
     domain = 'odenrep.com'
