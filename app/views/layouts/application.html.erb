@@ -11,7 +11,7 @@
   </head>
 
 
-<% if current_user %>
+<% if current_user && action_name != 'profile' %>
   <body class="<%= 'layout-container ls-top-navbar si-l3-md-up' -%>">
     <%= render 'layouts/nav' %>
     <%= render 'layouts/sidebar' %>

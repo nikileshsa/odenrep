@@ -1,0 +1,30 @@
+<!-- Content -->
+<div class="layout-content" data-scrollable>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+                        <%= bootstrap_form_for current_user do |f| %>
+      <%= f.form_group :profile_active, label: { text: "Profile Active?" } do %>
+        <%= f.radio_button :profile_active, false, label: "False", :inline => true, checked: !current_user.profile_active %>
+        <%= f.radio_button :profile_active, true, label: "True", :inline => true, checked: current_user.profile_active %>
+      <% end %>
+      <%= f.text_field :profile_url, :label => 'Profile path' %>
+
+        <p>
+          Public Profile:
+          <% if Rails.env.development? %>
+          <%= link_to 'http://localhost:3000/profiles/' + current_user.profile_url, 'http://localhost:3000/profiles/' + current_user.profile_url %>
+          <% else %>
+          <%= link_to 'http://odenrep.com/profiles/' + current_user.profile_url, 'http://odenrep.com/profiles/' + current_user.profile_url %>
+          <% end %>
+        </p>
+
+
+                          <%= f.submit %>
+                        <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   def make_chainpoint
     require 'tierion'
 
-    t = Tierion::HashApi::Client.new('nikilesh.work@gmail.com', 'odenrep123$')
+    t = Tierion::HashApi::Client.new(Rails.application.secrets.tierion_user, Rails.application.secrets.tierion_pass)
     my_hash = Digest::SHA256.hexdigest(self.body)
     t.send(my_hash)
 
@@ -18,7 +18,7 @@ class Event < ApplicationRecord
   end
 
   def finish_chainpoint
-    t = Tierion::HashApi::Client.new('nikilesh.work@gmail.com', 'odenrep123$')
+    t = Tierion::HashApi::Client.new(Rails.application.secrets.tierion_user, Rails.application.secrets.tierion_pass)
 
     r = t.receipt_from_id_and_hash(chainpoint.chainpoint_id, chainpoint.target_hash)
     if r

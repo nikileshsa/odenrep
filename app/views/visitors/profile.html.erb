@@ -1,6 +1,7 @@
 <!-- Content -->
-<div class="layout-content" data-scrollable>
-  <div class="container-fluid">
+<%= link_to '<--- ODEN REP HOME', root_path %>
+<div class="layout-content" data-scrollable style="margin-left: 100px; margin-top: 100px;">
+  <div class="container-fluid" >
     <div class="row">
 
 
@@ -14,9 +15,6 @@
           <% rescue %>
             Your Timeline
           <% end %>
-          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myEventModal">
-            Add Event
-          </button>
         </h3>
         <hr>
       </div>
@@ -47,7 +45,7 @@
                 </button>
 
                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myEndorseModal<%= event.id.to_s -%>" >
-                  Get Endorsement
+                  Endorse This
                 </button>
 
 
@@ -65,7 +63,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ask Someone to Endorse: "<%= event.body %>"</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Endorse: "<%= event.body %>"</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>

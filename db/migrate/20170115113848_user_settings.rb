@@ -1,0 +1,6 @@
+class UserSettings < ActiveRecord::Migration[5.0]
+  def change
+    add_column :users, :profile_active, :boolean
+    add_column :users, :profile_url, :string
+  end
+end
