@@ -1,5 +1,5 @@
 <h3>Welcome</h3>
-
+<div style="margin-left: 200px;">
 <div class="btn-group" style="width: 300px;" >
   <a class='btn btn-primary disabled btn-lg' ><i class="fa fa-twitter" style="width:16px;"></i></a>
   <%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path,
@@ -11,4 +11,5 @@
   <a class='btn btn-primary disabled btn-lg' ><i class="fa fa-facebook" style="width:16px;"></i></a>
   <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path,
       :class => 'btn btn-primary btn-lg', :style => "width:12em;" %>
+</div>
 </div>
