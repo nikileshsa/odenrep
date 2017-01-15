@@ -1,6 +1,3 @@
-require 'sendgrid-ruby'
-include SendGrid
-
 class EndorsementsController < ApplicationController
 
   def create
@@ -13,19 +10,28 @@ class EndorsementsController < ApplicationController
     e.event = event
     e.save!
 
-    from = Email.new(email: 'rhett@heyrhett.com')
-    subject = current_user.name + ' would like an endorsement'
-    to = Email.new(email: e.email)
+    from = 'rhett@odenrep.com'
+    my_subject = current_user.name + ' would like an endorsement'
+    my_to = e.email
+
     domain = 'odenrep.com'
     if Rails.env.development?
       domain = 'localhost:3000'
     end
-    content = Content.new(type: 'text/plain', value: "Hello,\n" + current_user.name + ' is asking for an endorsement of '+
+    content = "Hello,\n" + current_user.name + ' is asking for an endorsement of '+
       event.body + "\n\n" + ' Please click here to confirm: '+
-      'http://' + domain + '/confirm/' + e.code)
-    mail = Mail.new(from, subject, to, content)
-    sg = SendGrid::API.new(api_key: Rails.application.secrets.sendgrid_key)
-    response = sg.client.mail._('send').post(request_body: mail.to_json)
+      'http://' + domain + '/confirm/' + e.code
+
+    gmail = Gmail.connect('rhett@heyrhett.com', Rails.application.secrets.gmail)
+
+    email = gmail.compose do
+      to my_to
+      subject my_subject
+      body content
+    end
+    email.deliver! # or: gmail.deliver(email)
+    gmail.logout
+
     flash[:message] ="Email sent!"
     redirect_to root_path
   end

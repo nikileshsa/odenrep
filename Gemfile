@@ -17,7 +17,8 @@ gem 'twitter'
 gem 'rails_12factor', group: :production
 gem 'sendgrid-ruby'
 gem 'tierion'
-
+gem 'mailgun-ruby', '~>1.1.2'
+gem 'gmail'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
